@@ -1,0 +1,6 @@
+{
+  "name": "IDLTech - AI-Powered App Studio & No-Code Automation",
+  "description": "IDLTech builds native iOS & Android apps and enterprise no-code automation pipelines at fixed transparent prices. Rebranded high-end digital agency platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

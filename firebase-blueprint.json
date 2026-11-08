@@ -1,0 +1,156 @@
+{
+  "entities": {
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Project consultation request or app build inquiry submitted by client",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique inquiry identifier",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Client full name",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "description": "Client business email address",
+          "format": "email",
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "description": "Client contact phone or WhatsApp number",
+          "maxLength": 40
+        },
+        "serviceType": {
+          "type": "string",
+          "description": "Selected service plan or consultation category",
+          "maxLength": 100
+        },
+        "budgetRange": {
+          "type": "string",
+          "description": "Client declared budget band",
+          "maxLength": 100
+        },
+        "projectDetails": {
+          "type": "string",
+          "description": "Detailed project description or scope request",
+          "maxLength": 3000
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Server submission timestamp",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "Processing status of inquiry",
+          "enum": ["new", "reviewed", "scheduled", "archived"]
+        }
+      },
+      "required": ["name", "email", "serviceType", "projectDetails"]
+    },
+    "BootcampRegistration": {
+      "title": "BootcampRegistration",
+      "description": "Student seat reservation for No-Code Automation Bootcamp",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique registration ID",
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Student full name",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "description": "Student email address",
+          "format": "email",
+          "maxLength": 160
+        },
+        "phone": {
+          "type": "string",
+          "description": "Student phone number",
+          "maxLength": 40
+        },
+        "tuition": {
+          "type": "string",
+          "description": "Tuition fee rate",
+          "maxLength": 50
+        },
+        "status": {
+          "type": "string",
+          "description": "Registration booking status",
+          "enum": ["reserved", "confirmed", "refunded"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp",
+          "format": "date-time"
+        }
+      },
+      "required": ["name", "email", "phone"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile synchronized from Google authentication",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Auth UID",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "Google account email",
+          "format": "email",
+          "maxLength": 160
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name",
+          "maxLength": 120
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL",
+          "maxLength": 500
+        },
+        "lastActive": {
+          "type": "string",
+          "description": "Last active timestamp",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email"]
+    }
+  },
+  "firestore": {
+    "/inquiries/{inquiryId}": {
+      "schema": {
+        "$ref": "#/entities/Inquiry"
+      },
+      "description": "Client consultation requests and project blueprint inquiries"
+    },
+    "/bootcampRegistrations/{registrationId}": {
+      "schema": {
+        "$ref": "#/entities/BootcampRegistration"
+      },
+      "description": "Student registrations for the No-Code Automation Bootcamp"
+    },
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "User profiles synchronized via Google authentication"
+    }
+  }
+}
